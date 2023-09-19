@@ -1,17 +1,28 @@
 name: first
 
+env:
+  WORKFLOW_ENV: 'workflow_env'
+
 on: [push]
 
 jobs:
 
   job1:
     name: First job - ubuntu
+    env:
+      JOB_ENV: 'job_env'
     runs-on: ubuntu-latest
     steps:
       - name: Step one
         uses: actions/checkout@v4
       - name: Step two
         run: env | sort
+      - name: Show envs
+        run: |
+          echo "\$JOB_ENV: $JOB_ENV"
+          echo "\$WORKFLOW_ENV: $WORKFLOW_ENV"
+          echo "\$JOB_ENV: ${{ env.JOB_ENV }}"
+          echo "\$WORKFLOW_ENV: ${{ env.WORKFLOW_ENV }}"
 
   job2:
     name: Second job - windows
