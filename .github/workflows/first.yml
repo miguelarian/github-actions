@@ -23,8 +23,8 @@ jobs:
           echo "\$WORKFLOW_ENV: $WORKFLOW_ENV"
           echo "\$JOB_ENV: ${{ env.JOB_ENV }}"
           echo "\$WORKFLOW_ENV: ${{ env.WORKFLOW_ENV }}"
-      - name: Show envs
-        run: "echo ${{ secrets.MY_SECRET }}"
+      - name: Show secrets
+        run: echo "secrets.MY_SECRET ${{ secrets.MY_SECRET }}"
 
   job2:
     name: Second job - windows
